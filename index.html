@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="validation.js" defer></script>
+    <link rel="icon" href="logo.jpeg" />
+  </head>
+  <body>
+    <div class="login-container">
+      <div id="login-form">
+        <div class="logo-wrapper">
+          <img src="logo.jpeg" alt="Logo K-ROAD" class="logo-aplikasi" />
+        </div>
+
+        <h2 class="selamat" id="auth-title">Selamat Datang di K-ROAD</h2>
+        <p class="sub-selamat" id="auth-subtitle">
+          Silakan masuk untuk mulai melapor.
+        </p>
+        <p id="error-massage"></p>
+
+        <form id="loginform">
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email" />
+          </div>
+
+          <div class="input-group">
+            <input type="password" id="password" placeholder="Password" />
+          </div>
+
+          <button type="submit" class="btn-masuk" id="btn-auth-submit">
+            Masuk
+          </button>
+
+          <p class="text-pindah-wrapper">
+            <span id="text-pindah">Belum punya akun?</span>
+            <a href="signup.html">Daftar di sini</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

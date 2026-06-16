@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="logo.jpeg" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="https://cdn.maptiler.com/maptiler-geocoding-control/v1.2.4/leaflet.umd.js"></script>
+    <link
+      href="https://cdn.maptiler.com/maptiler-geocoding-control/v1.2.4/style.css"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K-Road Peta</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <div class="nav-atas">
+      <img src="logo.jpeg" id="logo-nav" />
+      <input type="text" id="search-bar" />
+      <button type="button" id="akun">👤</button>
+    </div>
+
+    <button type="button" id="foto-form">
+      <i class="ri-camera-line"></i>
+    </button>
+
+    <div id="container-bawah">
+  <div class="nav-bawah">
+    <button type="button" id="home" class="nav-btn active">
+      <i class="ri-home-4-line nav-icon"></i>
+    </button>
+    <button type="button" id="laporanku" class="nav-btn">
+      <i class="ri-file-list-3-line nav-icon"></i>
+    </button>
+    <button type="button" id="notif" class="nav-btn">
+      <i class="ri-notification-3-line nav-icon"></i>
+    </button>
+
+  </div>
+</div>
+    </div>
+    <div class="form-isi">
+  
+<div class="form-header">
+  <button type="button" id="back">
+    <i class="ri-arrow-left-line"></i>
+  </button>
+  <h2 id="detail">Detail Laporan</h2>
+</div>
+
+  <form action="https://sheetdb.io/api/v1/eti9267z25pab" method="POST" id="sheetdb-form">
+  
+  <div class="form-group-title">Photo Preview</div>
+  <label for="Foto" class="upload-label">
+    <input type="file" accept="image/*" capture="environment" id="Foto" />
+    <div class="imagepreview" id="image_preview">
+      <img src="" alt="Preview Gambar" class="image-preview" />
+      <div class="btn-ulangi-foto" id="btn-ulangi">
+        <span>📸 Ulangi Foto</span>
+      </div>
+      <span class="image-preview-text" id="placeholder-text">📸 Ambil Foto Jalan Rusak</span>
+    </div>
+  </label>
+
+  <div class="form-container-isi">
+    
+    <div class="form-group-title">Location</div>
+    <div class="input-row-horizontal">
+      <span class="input-icon">📍</span>
+      <input type="text" id="jalan" placeholder="Nama Jalan / Lokasi" name="data[Alamat]" required />
+      <button type="button" id="gps">GPS</button>
+    </div>
+
+    <div class="form-group-title">Damage Level Chip</div>
+    <div class="chip-group">
+      <input type="radio" id="ringan" name="data[Tingkat_Kerusakan]" value="Rusak Ringan" checked />
+      <label for="ringan" class="chip-btn">Rusak Ringan</label>
+
+      <input type="radio" id="sedang" name="data[Tingkat_Kerusakan]" value="Rusak Sedang" />
+      <label for="sedang" class="chip-btn">Rusak Sedang</label>
+
+      <input type="radio" id="parah" name="data[Tingkat_Kerusakan]" value="Rusak Parah" />
+      <label for="parah" class="chip-btn parah-color">Rusak Parah</label>
+    </div>
+
+    <div class="form-group-title">Catatan Tambahan</div>
+    <div class="input-group-vertical">
+      <textarea id="deskripsi" placeholder="Tambahkan detail atau patokan jalan jika diperlukan (opsional)" name="data[Deskripsi]" rows="4"></textarea>
+    </div>
+
+
+    <input type="hidden" id="form-foto" name="data[Foto]" />
+    <input type="hidden" id="form-email" name="data[Email]" />
+
+
+    <input type="hidden" id="form-lat" name="data[Latitude]" />
+    <input type="hidden" id="form-long" name="data[Longitude]" />
+
+    <div class="submit-section">
+        <button type="submit" id="submit-btn">Kirim Laporan Sekarang</button>
+    </div>
+    
+    <input type="hidden" id="form-tanggal" name="data[Tanggal]" />
+    <input type="hidden" id="form-jam" name="data[Jam]" />
+  
+  </div>
+</form>
+
+</div>
+
+    <div class="hal-riwayat">
+  <div class="riwayat-header">
+    <button type="button" id="kembali">
+      <i class="ri-arrow-left-line"></i>
+    </button>
+    <h2>Laporanku</h2>
+  </div>
+  <div class="riwayat-body" id="riwayat-body">
+    <div class="loading-state">Memuat laporan...</div>
+  </div>
+</div>
+
+    <div class="hal-notif">
+      <button type="button" id="kembali">⬅️</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

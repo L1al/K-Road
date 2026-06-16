@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Akun K-ROAD</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="validation.js" defer></script>
+    <link rel="icon" href="logo.jpeg" />
+  </head>
+  <body>
+    <div class="login-container">
+      <div id="login-form">
+        <div class="logo-wrapper">
+          <img src="logo.jpeg" alt="Logo K-ROAD" class="logo-aplikasi" />
+        </div>
+
+        <h2 class="selamat" id="auth-title">Selamat Datang di K-ROAD</h2>
+        <p class="sub-selamat" id="auth-subtitle">
+          Silakan buat akun untuk mulai melapor.
+        </p>
+        <p id="error-massage"></p>
+
+        <form id="loginform">
+          <div class="input-group">
+            <input type="text" id="username" placeholder="Username" required />
+          </div>
+
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              id="repeat-password"
+              placeholder="Ulangi Password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn-masuk" id="btn-auth-submit">
+            Daftar
+          </button>
+
+          <p class="text-pindah-wrapper">
+            <span id="text-pindah">Sudah punya akun?</span>
+            <a href="index.html">Masuk di sini</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

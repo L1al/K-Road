@@ -1,0 +1,173 @@
+/* Kontainer luar penjamin posisi tepat di tengah layar HP */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: white; /* Warna abu-abu background sesuai mockup gambar */
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Kotak putih transparan / pembungkus form internal */
+#login-form {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Pengaturan dimensi logo aplikasi */
+.logo-wrapper {
+  margin-bottom: 25px;
+}
+
+.logo-aplikasi {
+  width: 90px; /* Sesuaikan skala besar kecilnya logo di sini */
+  height: auto;
+  filter: drop-shadow(
+    0px 4px 8px rgba(0, 0, 0, 0.15)
+  ); /* Efek bayangan halus di bawah logo */
+}
+
+/* Pengaturan teks judul utama */
+.selamat {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0b2f61; /* Warna biru gelap pekat sesuai gambar */
+  margin: 0 0 5px 0;
+  text-align: center;
+}
+
+/* Pengaturan teks sub-judul instruksi */
+.sub-selamat {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333333;
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+/* Form tag pengikat input */
+#loginform {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Jarak antar kotak input */
+}
+
+/* Kotak Input bergaya kapsul tipis sesuai mockup */
+.input-group input {
+  width: 100%;
+  max-width: 360px;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  border: 1px solid #a6a8aa; /* Garis tepi tipis abu-abu */
+  border-radius: 10px; /* Sudut melengkung halus sesuai gambar */
+  background-color: #cbceef; /* Warna dasar dalam input abu-abu kebiruan pucat */
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Warna teks placeholder di dalam input */
+.input-group input::placeholder {
+  color: #8e9093;
+  font-weight: 500;
+}
+
+/* Efek transisi saat kolom input diklik oleh user */
+.input-group input:focus {
+  border-color: #0b2f61;
+  background-color: #ffffff; /* Berubah putih bersih saat diketik */
+  box-shadow: 0 0 5px rgba(11, 47, 97, 0.2);
+}
+
+/* Tombol masuk tambahan penunjang form */
+.btn-masuk {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #0b2f61;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.btn-masuk:hover {
+  background-color: #071f40;
+}
+
+/* --- TAMBAHAN UNTUK REGISTER & TOMBOL PINDAH MODE SPA --- */
+
+/* Menata bungkus paragraf teks perpindahan di bawah form */
+.text-pindah-wrapper {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #333333;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Menata gaya teks link pemicu pindah halaman */
+#link-pindah {
+  color: #0b2f61; /* Menyamakan warna biru gelap khas K-ROAD */
+  text-decoration: none; /* Menghilangkan garis bawah default agar bersih */
+  font-weight: bold;
+  margin-left: 3px;
+  transition: color 0.2s ease;
+}
+
+/* Memberikan efek warna saat kursor/jari menyorot link daftar */
+#link-pindah:hover {
+  color: #071f40;
+  text-decoration: underline; /* Garis bawah hanya muncul saat disorot */
+}
+
+/* Memastikan animasi transisi saat input nama muncul di layar */
+#container-nama {
+  width: 100%;
+  animation: fadeInAuth 0.4s ease-in-out;
+}
+
+/* Animasi halus memudar saat berganti dari login ke register */
+@keyframes fadeInAuth {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pengaturan visual teks pesan kesalahan (Eror) */
+#error-massage {
+  color: #d9534f; /* Warna merah tegas penanda eror universal */
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+
+  /* Jarak vertikal agar pas di bawah sub-judul */
+  margin: -10px 0 15px 0;
+
+  /* Animasi halus agar teks muncul dengan efek memudar (tidak kaku) */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Menyelaraskan pembungkus email dan password agar tetap tegak lurus ke bawah */
+.untuklogin {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Menyelaraskan jarak antar-input agar sama persis dengan aturan #loginform */
+}
