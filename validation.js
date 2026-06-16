@@ -89,7 +89,7 @@ if (loginform) {
           if (akunCocok) {
             localStorage.setItem("emailTerdaftar", emailDiketik);
             alert("Login Berhasil!");
-            window.location.href = "K-Roadv3.html";
+            window.location.href = "k-Roadv3.html";
           } else {
             errorMassage.style.color = "#d9534f";
             errorMassage.innerText =
