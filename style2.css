@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. RESET DASAR & BODY
-   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -13,9 +10,6 @@ body {
   padding: 20px;
 }
 
-/* ==========================================================================
-   2. KOMPONEN PETA (MAP)
-   ========================================================================== */
 #map {
   width: 100%;
   max-width: 450px;
@@ -27,9 +21,6 @@ body {
   z-index: 1;
 }
 
-/* ==========================================================================
-   3. NAVIGASI ATAS & BAWAH (MENU UTAMA)
-   ========================================================================== */
 .nav-atas {
   position: fixed;
   top: 15px;
@@ -37,17 +28,17 @@ body {
   transform: translateX(-50%);
   z-index: 1000;
   display: flex;
-  align-items: center; /* Memastikan logo, search bar, dan ikon akun sejajar secara vertikal */
-  gap: 12px; /* Jarak antar elemen dikurangi sedikit agar muat */
+  align-items: center;
+  gap: 12px;
   width: calc(100% - 30px);
   max-width: 390px;
 }
 
 #logo-nav {
-  height: 40px; /* Atur tinggi logo agar proporsional dengan search bar */
-  width: auto; /* Lebar menyesuaikan otomatis */
-  border-radius: 8px; /* Opsi: tambahkan lengkungan jika logo berbentuk kotak */
-  object-fit: contain; /* Memastikan gambar tidak gepeng */
+  height: 40px;
+  width: auto;
+  border-radius: 8px;
+  object-fit: contain;
 }
 
 #search-bar {
@@ -72,7 +63,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; /* Mencegah ikon akun mengecil saat ruang sempit */
+  flex-shrink: 0;
 }
 
 .nav-bawah {
@@ -112,7 +103,6 @@ body {
   background-color: #f5f5f5;
 }
 
-/* TOMBOL BULAT JEP RET FOTO UTAMA */
 #foto-form {
   position: fixed;
   bottom: 100px;
@@ -142,10 +132,6 @@ body {
   background-color: #2e8c8b;
 }
 
-/* ==========================================================================
-   4. WADAH FORMULIR LAPORAN & HALAMAN LAIN
-   ========================================================================== */
-/* Container Utama Form Berlatar Putih */
 .form-isi {
   position: fixed;
   top: 0;
@@ -157,14 +143,11 @@ body {
   background-color: #ffffff;
   z-index: 99999;
   padding: 20px;
-
-  /* --- PERBAIKAN 1 --- */
-  display: none; /* UBAH INI: Wajib 'none' di awal agar peta tidak tertutup saat web baru dibuka */
+  display: none;
   flex-direction: column;
   overflow-y: auto;
 }
 
-/* Judul Sub-Bagian Kecil di Atas Input (Location, Photo Preview, dll) */
 .form-group-title {
   font-size: 13px;
   font-weight: 600;
@@ -173,7 +156,6 @@ body {
   margin-top: 10px;
 }
 
-/* Area Box Foto Melengkung Sesuai Gambar */
 .upload-label {
   display: block;
   width: 100%;
@@ -207,7 +189,6 @@ body {
   object-fit: cover;
 }
 
-/* Tombol kecil melayang di pojok kanan bawah setelah foto terambil */
 .btn-ulangi-foto {
   display: none;
   position: absolute;
@@ -222,7 +203,6 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Kolom Lokasi yang Menyatu dengan Icon dan Tombol GPS */
 .input-row-horizontal {
   display: flex;
   align-items: center;
@@ -258,7 +238,6 @@ body {
   color: #333;
 }
 
-/* SISTEM DESAIN CHIP KANDIDAT KELOMPOK (MENGGUNAKAN RADIO HIDDEN) */
 .chip-group {
   display: flex;
   gap: 8px;
@@ -266,7 +245,7 @@ body {
 }
 
 .chip-group input[type="radio"] {
-  display: none; /* sembunyikan bulatan radio asli */
+  display: none;
 }
 
 .chip-btn {
@@ -286,18 +265,15 @@ body {
   color: #333333;
 }
 
-/* Logika Warna Saat Chip Terpilih (Checked) */
 .chip-group input[type="radio"]:checked + .chip-btn {
-  background-color: #3babaa; /* Warna toska ikonik kalian */
+  background-color: #3babaa;
   color: white;
 }
 
-/* Khusus Pilihan Rusak Parah Mengikuti Warna Merah Contoh Gambar */
 .chip-group input[type="radio"]:checked + .chip-btn.parah-color {
   background-color: #d96a6a;
 }
 
-/* Kolom Catatan Tambahan (Textarea) */
 .input-group-vertical textarea {
   width: 100%;
   padding: 12px;
@@ -309,16 +285,15 @@ body {
   resize: none;
 }
 
-/* Tombol Submit Lebar Melengkung Toska Tua */
 .submit-section {
-  margin-top: auto; /* Memaksa posisi tombol menempel di bagian bawah form */
+  margin-top: auto;
   padding-top: 20px;
 }
 
 #submit-btn {
   width: 100%;
   height: 48px;
-  background-color: #1a6875; /* Warna hijau toska tua pekat sesuai contoh gambar */
+  background-color: #1a6875;
   color: white;
   border: none;
   border-radius: 12px;
@@ -332,49 +307,43 @@ body {
   background-color: #124d57;
 }
 
-/* Menyembunyikan kotak input latitude dan longitude dari layar */
 #form-lat,
 #form-long {
   display: none;
 }
 
-/* Menghilangkan tombol default 'Choose File' agar tampilan bersih */
 #foto {
   display: none !important;
 }
 
-/* Mengatur baris judul dan tombol back agar sejajar rapi */
 .form-header {
   display: flex;
   align-items: center;
-  gap: 12px; /* Jarak antara tombol panah dan tulisan Detail Laporan */
-  margin-bottom: 20px; /* Jarak ke komponen Photo Preview di bawahnya */
+  gap: 12px;
+  margin-bottom: 20px;
   padding-top: 5px;
   width: 100%;
 }
 
-/* Mengubah tombol back menjadi ikon lingkaran minimalis yang ramah jempol */
 #back {
   background: transparent;
   border: none;
-  font-size: 24px; /* Ukuran tanda panah yang pas untuk layar HP */
-  color: #333333; /* Warna abu-abu gelap elegan */
+  font-size: 24px;
+  color: #333333;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px; /* Lebar area klik tombol */
-  height: 40px; /* Tinggi area klik tombol */
-  border-radius: 50%; /* Membuat area sentuh berbentuk lingkaran */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   transition: background 0.2s;
 }
 
-/* Efek feedback interaktif saat tombol panah ditekan di HP */
 #back:active {
-  background-color: #f0f0f0; /* Muncul lingkaran abu-abu tipis saat diklik */
+  background-color: #f0f0f0;
 }
 
-/* Memastikan ukuran teks judul laporan proporsional */
 #detail {
   font-size: 20px;
   font-weight: 700;
@@ -395,7 +364,6 @@ body {
   display: none;
 }
 
-/* ===== HAL RIWAYAT ===== */
 .hal-riwayat {
   display: none;
   position: fixed;
@@ -415,7 +383,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 50px 20px 16px; /* padding-top lebih besar agar tidak ketutupan nav atas */
+  padding: 50px 20px 16px;
   background: #f0efeb;
   position: sticky;
   top: 0;
@@ -446,7 +414,6 @@ body {
   padding: 0 16px 100px;
 }
 
-/* ===== SECTION LABEL ===== */
 .section-label {
   font-size: 12px;
   color: #888;
@@ -456,7 +423,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* ===== LAPORAN CARD ===== */
 .laporan-item {
   margin-bottom: 24px;
 }
@@ -520,7 +486,6 @@ body {
   justify-content: flex-end;
 }
 
-/* ===== BADGE STATUS ===== */
 .badge-status {
   font-size: 11px;
   padding: 4px 12px;
@@ -548,7 +513,6 @@ body {
   color: #721c24;
 }
 
-/* ===== CHIP TINGKAT KERUSAKAN ===== */
 .chip-kerusakan {
   font-size: 10px;
   padding: 2px 8px;
@@ -573,7 +537,6 @@ body {
   color: #721c24;
 }
 
-/* ===== PROGRESS TRACKER ===== */
 .tracker-box {
   background: #fff;
   border-radius: 16px;
@@ -599,7 +562,7 @@ body {
 
 .tracker-step {
   display: flex;
-  align-items: center; /* ganti flex-start ke center */
+  align-items: center;
   gap: 10px;
   margin-bottom: 0;
 }
@@ -639,7 +602,7 @@ body {
 
 .step-line {
   width: 2px;
-  height: 12px; /* lebih pendek lagi */
+  height: 12px;
   background: #ddd;
   margin: 1px 0;
 }
@@ -660,7 +623,6 @@ body {
   font-weight: 600;
 }
 
-/* ===== STATE KOSONG / ERROR ===== */
 .loading-state,
 .empty-state,
 .error-state {
@@ -677,4 +639,49 @@ body {
 }
 .error-state {
   color: #dc3545;
+}
+
+/* Test
+
+/* menggunakan selektor id langsung agar prioritasnya lebih tinggi */
+div.form-kecamatan label[for="form-kecamatan"] {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333333;
+  display: block;
+  margin-top: 10px;
+}
+
+#form-kecamatan {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #a6a8aa !important;
+  border-radius: 10px !important;
+  background-color: #cbceef !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px; /* biar teks gak nabrak ikon arrow */
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  max-width: 360px;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+#form-kecamatan:focus {
+  border-color: #0b2f61 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 5px rgba(11, 47, 97, 0.2);
+}
+
+#form-kecamatan option {
+  background-color: #ffffff;
+  color: #333333;
 }
