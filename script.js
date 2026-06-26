@@ -2,6 +2,7 @@ var map = L.map("map", {
   maxZoom: 19,
   zoomControl: false,
 }).setView([-3.9886, 122.5149], 13);
+
 L.tileLayer(
   "https://api.maptiler.com/maps/streets-v2-light/{z}/{x}/{y}.png?key=fQbSorOkyRaY0FpuZbgX",
   {
@@ -119,7 +120,7 @@ const successCallback = (position) => {
     koordinatlong = posisiBaru.lng;
 
     console.log(
-      "Sukses digeser ke koordinat baru:",
+      "sukses digeser ke koordinat baru:",
       posisiBaru.lat,
       posisiBaru.lng,
     );
@@ -177,6 +178,40 @@ const myDateFormatted = formatDate(myDate);
 document.getElementById("form-tanggal").value = myDateFormatted.Tanggal;
 document.getElementById("form-jam").value = myDateFormatted.Jam;
 
+async function getKecamatanFromCoords(lat, lon) {
+  if (lat === null || lon === null || lat === "" || lon === "") {
+    return "tidak diketahui";
+  }
+
+  try {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=14&addressdetails=1`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("gagal memanggil api");
+
+    const data = await res.json();
+
+    if (data && data.address) {
+      const kecamatan =
+        data.address.city_district ||
+        data.address.suburb ||
+        data.address.town ||
+        data.address.county;
+
+      if (kecamatan) {
+        return kecamatan.replace(/^kecamatan\s+/i, "").trim();
+      }
+
+      if (data.address.village) return data.address.village;
+      if (data.address.neighbourhood) return data.address.neighbourhood;
+    }
+
+    return "tidak diketahui";
+  } catch (err) {
+    console.error("error reverse geocoding:", err);
+    return "tidak diketahui";
+  }
+}
+
 const IMGBB_API_KEY = "3b1993b9abb6088949937c936112c01b";
 
 var form = document.getElementById("sheetdb-form");
@@ -195,12 +230,12 @@ form.addEventListener("submit", async (e) => {
   }
 
   if (!file) {
-    alert("Silakan pilih foto bukti kerusakan jalan terlebih dahulu!");
+    alert("silakan pilih foto bukti kerusakan jalan terlebih dahulu!");
     return;
   }
 
   submitBtn.disabled = true;
-  submitBtn.innerText = "Mengupload foto...";
+  submitBtn.innerText = "mengupload foto...";
 
   try {
     let fotoUrl = "";
@@ -215,13 +250,19 @@ form.addEventListener("submit", async (e) => {
       },
     );
 
-    if (!imgbbRes.ok) throw new Error("Gagal mengunggah foto ke ImgBB.");
+    if (!imgbbRes.ok) throw new Error("gagal mengunggah foto ke imgbb.");
 
     const imgbbData = await imgbbRes.json();
     fotoUrl = imgbbData.data.url;
 
     document.getElementById("form-foto").value = fotoUrl;
-    submitBtn.innerText = "Menyimpan laporan...";
+
+    submitBtn.innerText = "mendapatkan lokasi kecamatan...";
+    const latInput = document.getElementById("form-lat").value;
+    const longInput = document.getElementById("form-long").value;
+    const namaKecamatan = await getKecamatanFromCoords(latInput, longInput);
+
+    submitBtn.innerText = "menyimpan laporan...";
 
     const payload = {
       data: [
@@ -229,12 +270,13 @@ form.addEventListener("submit", async (e) => {
           Foto: fotoUrl,
           Email: emailPelapor,
           Alamat: document.getElementById("jalan").value,
+          Kecamatan: namaKecamatan,
           Tingkat_Kerusakan: form.querySelector(
             "input[name='data[Tingkat_Kerusakan]']:checked",
           ).value,
           Deskripsi: document.getElementById("deskripsi").value,
-          Latitude: document.getElementById("form-lat").value,
-          Longitude: document.getElementById("form-long").value,
+          Latitude: latInput,
+          Longitude: longInput,
           Tanggal: document.getElementById("form-tanggal").value,
           Jam: document.getElementById("form-jam").value,
           Status: "Proses",
@@ -251,10 +293,10 @@ form.addEventListener("submit", async (e) => {
       },
     );
 
-    if (!response.ok) throw new Error("Gagal mengirim data ke Google Sheets.");
+    if (!response.ok) throw new Error("gagal mengirim data ke google sheets.");
     await response.json();
 
-    alert("Laporan kerusakan jalan berhasil dikirim ke database K-ROAD!");
+    alert("laporan kerusakan jalan berhasil dikirim ke database k-road!");
     form.reset();
 
     if (imagePreview && previewDefaultext) {
@@ -264,7 +306,7 @@ form.addEventListener("submit", async (e) => {
     }
   } catch (err) {
     console.error(err);
-    alert("Gagal memproses laporan: " + err.message);
+    alert("gagal memproses laporan: " + err.message);
   } finally {
     submitBtn.disabled = false;
     submitBtn.innerText = "Kirim Laporan";
@@ -326,17 +368,17 @@ function badgeStatus(status) {
 async function loadRiwayat() {
   const body = document.getElementById("riwayat-body");
 
-  body.innerHTML = `<div class="empty-state">Memuat laporan...</div>`;
+  body.innerHTML = `<div class="empty-state">memuat laporan...</div>`;
 
   const email = localStorage.getItem("emailTerdaftar") || null;
 
   try {
     const res = await fetch(SHEETDB_URL);
-    if (!res.ok) throw new Error("Gagal mengambil data: " + res.status);
+    if (!res.ok) throw new Error("gagal mengambil data: " + res.status);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
-      body.innerHTML = `<div class="empty-state">Belum ada laporan.</div>`;
+      body.innerHTML = `<div class="empty-state">belum ada laporan.</div>`;
       return;
     }
 
@@ -347,7 +389,7 @@ async function loadRiwayat() {
       : data;
 
     if (!filtered.length) {
-      body.innerHTML = `<div class="empty-state">Belum ada laporan yang dikirim.</div>`;
+      body.innerHTML = `<div class="empty-state">belum ada laporan yang dikirim.</div>`;
       return;
     }
 
@@ -389,13 +431,13 @@ async function loadRiwayat() {
             <div class="laporan-footer">${badgeStatus(status)}</div>
           </div>
           <div class="tracker-box">
-            <p class="tracker-title">Progress penanganan</p>
+            <p class="tracker-title">progress penanganan</p>
             ${renderTracker(status)}
           </div>
         </div>`;
       })
       .join("");
   } catch (err) {
-    body.innerHTML = `<div class="error-state">❌ Gagal memuat: ${err.message}</div>`;
+    body.innerHTML = `<div class="error-state">❌ gagal memuat: ${err.message}</div>`;
   }
 }
